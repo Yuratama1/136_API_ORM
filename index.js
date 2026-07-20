@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.listen(port, () => {
-    console.log(`Server started on port 30000`);
+    console.log(`Server started on port 3000`);
 });
 
 db.sequelize.sync()
@@ -21,11 +21,12 @@ db.sequelize.sync()
     })
 
 app.post('/komik', async (req, res) => {
+    const data = req.body;
     try {
         const komik = await db.Komik.create(data);
         res.send(komik);
     } catch (err) {
-        ressend(err);
+        res.send(err);
     }
 });
 
